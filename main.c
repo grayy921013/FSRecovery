@@ -11,12 +11,13 @@ void printUsage(char* path) {
 
 int main(int argc, char** argv) {
   char *device = NULL;
-  int lflag = 0;
+  char *lFile = NULL;
   char *rFile = NULL;
   char *oFile = NULL;
+  int err = 0;
   int c;
   opterr = 0;
-  while ((c = getopt (argc, argv, "d:lr:o:")) != -1) {
+  while ((c = getopt (argc, argv, "d:l:r:o:")) != -1) {
     switch (c)
     {
       case 'd':
@@ -24,7 +25,7 @@ int main(int argc, char** argv) {
       break;
       case 'l':
       if (device != NULL) {
-        lflag = 1;
+        lFile = optarg;
       }
       break;
       case 'r':
@@ -36,15 +37,13 @@ int main(int argc, char** argv) {
       if (device != NULL) {
         oFile = optarg;
       }
-      case '?':
-      abort();
       default:
-      abort();
+      err = 1;
     }
   }
-  if (device) {
-    if (lflag) {
-      list(device);
+  if (!err && device) {
+    if (lFile) {
+      list(device,lFile);
       return 0;
     } else if (rFile && oFile) {
       recover(rFile,oFile);

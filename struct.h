@@ -41,4 +41,18 @@ unsigned char BS_VolLab[11]; /* Volume label in ASCII. User defines when
  creating the file system */
 unsigned char BS_FilSysType[8]; /* File system type label in ASCII */
 } BootEntry;
+typedef struct _DirEntry
+{unsigned char DIR_Name[11]; /* File name */
+ unsigned char DIR_Attr; /* File attributes */
+ unsigned char DIR_NTRes; /* Reserved */
+ unsigned char DIR_CrtTimeTenth; /* Created time (tenths of second) */
+ unsigned short DIR_CrtTime; /* Created time (hours, minutes, seconds) */
+ unsigned short DIR_CrtDate; /* Created day */
+ unsigned short DIR_LstAccDate; /* Accessed day */
+ unsigned short DIR_FstClusHI; /* High 2 bytes of the first cluster address */
+ unsigned short DIR_WrtTime; /* Written time (hours, minutes, seconds */
+ unsigned short DIR_WrtDate; /* Written day */
+ unsigned short DIR_FstClusLO; /* Low 2 bytes of the first cluster address */
+ uint32_t DIR_FileSize; /* File size in bytes. (0 for directories) */
+} DirEntry;
 #pragma pack(pop)
