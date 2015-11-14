@@ -1,2 +1,2 @@
 void list(char* device, char* lFile);
-void recover(char *rFile, char *oFile);
+void recover(char* device, char *rFile, char *oFile);

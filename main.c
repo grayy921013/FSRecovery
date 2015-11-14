@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "file.h"
+#include "debug.h"
 
 void printUsage(char* path) {
   printf("Usage: ");
@@ -22,21 +23,26 @@ int main(int argc, char** argv) {
     {
       case 'd':
       device = optarg;
+      DEBUG(printf("device: %s\n",device););
       break;
       case 'l':
       if (device != NULL) {
         lFile = optarg;
+        DEBUG(printf("l: %s\n",lFile););
       }
       break;
       case 'r':
       if (device != NULL) {
         rFile = optarg;
+        DEBUG(printf("r: %s\n",rFile););
       }
       break;
       case 'o':
       if (device != NULL) {
         oFile = optarg;
+        DEBUG(printf("o: %s\n",oFile););
       }
+      break;
       default:
       err = 1;
     }
@@ -46,7 +52,7 @@ int main(int argc, char** argv) {
       list(device,lFile);
       return 0;
     } else if (rFile && oFile) {
-      recover(rFile,oFile);
+      recover(device, rFile,oFile);
       return 0;
     }
   }
