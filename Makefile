@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-Wall
 
 EXE=main
-OBJ=main.o
+OBJ=main.o file.o
 
 all: ${EXE}
 
