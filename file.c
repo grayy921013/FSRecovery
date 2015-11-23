@@ -247,7 +247,7 @@ void recover(char* device, char *rFile, char *oFile) {
   DEBUG(printf("file cluster:%ld\n",cluster););
   fileSize = dirEntry->DIR_FileSize;
   DEBUG(printf("file size:%ld\n",fileSize););
-  if (getNextCluster(cluster,fp) != 0) {
+  if (cluster != 0 && getNextCluster(cluster,fp) != 0) {
       printf("[%s]: error - fail to recover\n", filename);
       return;
   }
